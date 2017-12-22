@@ -14,9 +14,21 @@ class base_controllerCron extends base_controller
 
     public function init()
     {
+        $this->_deny();
         parent::init();
         self::__message('Start:');
         $this->_start_time = microtime(1);
+    }
+
+    /**
+     * 限制非服务器访问
+     */
+    private function _deny()
+    {
+        if ('cli' !== PHP_SAPI) {
+            header("HTTP/1.1 403 Forbidden");
+            $this->__halt('403');
+        }
     }
 
     public function __destruct()
