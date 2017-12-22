@@ -27,7 +27,7 @@ class base_controllerCron extends base_controller
 
     protected static function __message($msg, $split = self::LINE)
     {
-        echo $msg . $split;
+        echo date('[Y-m-d H:i:s] ') . $msg . $split;
     }
 
     protected static function __halt($msg, $split = self::LINE)
